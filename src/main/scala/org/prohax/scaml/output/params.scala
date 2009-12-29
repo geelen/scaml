@@ -11,18 +11,18 @@ object params extends ScamlFile[(List[Post])] {
 <div id='posts'>
   <h1>
     Got
-    { posts.length }
+    """+{ posts.length }+"""
     posts for ya.
   </h1>
   <div class='spacer'>
     <ul>
-      { posts.map(p =>
+      """+{ posts.map(p => """
         <li>
-          <span class='author'>{ p.author }</span>
-          <span class='posts'>{ p.body.take(1) }</span>
-          <span class='date'>{ "%tD" format p.date }</span>
+          <span class='author'>"""+{ p.author }+"""</span>
+          <span class='posts'>"""+{ p.body.first }+"""</span>
+          <span class='date'>"""+{ "%tD" format p.date }+"""</span>
         </li>
-      ) }
+      """ ).mkString }+"""
     </ul>
   </div>
 </div>
