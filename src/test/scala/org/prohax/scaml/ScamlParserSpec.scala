@@ -13,7 +13,7 @@ object ScamlParserSpec extends Specification {
   val inputDir = sampleDir + "input/"
   val outputDir = sampleDir + "output/"
 
-  def read(filename: String) = Source.fromFile(filename).getLines.mkString
+  def read(filename: String) = Source.fromPath(filename).getLines("\n").mkString
 
 //  "The parser" should {
 //    new File(inputDir).listFiles.foreach((f: File) => {
