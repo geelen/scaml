@@ -1,3 +1,4 @@
+/! reference: Option[String]
 %div
   %h1 Test.
   %p
@@ -10,4 +11,5 @@
   %p
     And
     = 6 * 30.5
-    cm tall.
+    %a('href -> reference.getOrElse("")) cm
+    tall.

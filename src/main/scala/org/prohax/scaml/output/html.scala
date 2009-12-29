@@ -6,7 +6,9 @@ import org.prohax.scaml.ScamlFile
 import org.prohax.scaml.models._
 
 object html extends ScamlFile[Unit] {
-  def renderXml(t:Unit) = {
-    <html/>
+  def render(t:Unit) = {
+"""
+<html/>
+"""
   }
 }

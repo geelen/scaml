@@ -6,7 +6,8 @@ import org.prohax.scaml.ScamlFile
 import org.prohax.scaml.models._
 
 object emptyfile extends ScamlFile[Unit] {
-  def renderXml(t:Unit) = {
-    Text("")
+  def render(t:Unit) = {
+"""
+"""
   }
 }
