@@ -18,5 +18,9 @@ object BasicSpec extends Specification {
       Tag("p", 'class -> "one", 'class -> "two").mkString(0) must beEqualTo("<p class='two one'></p>")
       Tag("a", 'class -> "one", 'href -> "").mkString(0) must beEqualTo("<a class='one'></a>")
     }
+    "handle inner text" in {
+      Tag("p") {"inner"}.mkString(0) must beEqualTo("<p>inner</p>")
+      Tag("p", 'class -> "one", 'class -> "two") {"inner"}.mkString(2) must beEqualTo("    <p class='two one'>inner</p>")
+    }
   }
 }
