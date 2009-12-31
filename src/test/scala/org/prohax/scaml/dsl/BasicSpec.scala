@@ -10,6 +10,9 @@ class BasicSpec extends Specification {
       Tag("html").mkString(0) must beEqualTo("<html></html>")
       Tag("p").mkString(2) must beEqualTo("    <p></p>")
     }
+    "print self closing tags properly" in {
+      SELF_CLOSING_TAGS.foreach(s => Tag(s).mkString(0) must beEqualTo("<" + s + " />"))
+    }
     "print attributes" in {
       Tag("p", 'id -> "one").mkString(0) must beEqualTo("<p id='one'></p>")
       Tag("p", 'class -> "two").mkString(0) must beEqualTo("<p class='two'></p>")

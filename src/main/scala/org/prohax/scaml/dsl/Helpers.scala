@@ -10,4 +10,6 @@ object Helpers {
   implicit def stringToStringTag(s: String) = new StringTag(s)
 
   implicit def seqToMultiTag(is: Seq[Indentable]) = MultiTag(is)
+
+  val SELF_CLOSING_TAGS = Array("br", "meta")
 }
