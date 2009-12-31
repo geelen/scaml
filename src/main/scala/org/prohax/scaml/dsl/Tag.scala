@@ -2,7 +2,7 @@ package org.prohax.scaml.dsl
 
 import scala.collection.immutable.Map
 
-import org.prohax.scaml.Helpers._
+import org.prohax.scaml.dsl.Helpers._
 
 class Tag(name: String, attrs: Map[Symbol, String]) {
   def mkString(depth: Int) = {
@@ -15,7 +15,12 @@ class Tag(name: String, attrs: Map[Symbol, String]) {
 }
 object Tag {
   def apply(s: String) = new Tag(s, Map[Symbol, String]())
+  
   def apply(s: String, as: (Symbol, String)*) = {
-    new Tag(s, Map(as:_*))
+    val attrs: List[(Symbol, String)] = as.toList
+    new Tag(s, attrs.foldLeft(Map[Symbol,String]())((map, x) => {
+      val v = x._1 -> (x._2 :: map.get(x._1).toList).mkString(" ")
+      if (v._2.isEmpty) map else map + v 
+    }))
   }
 }

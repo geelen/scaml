@@ -13,5 +13,10 @@ object BasicSpec extends Specification {
       Tag("p", 'class -> "two").mkString(0) must beEqualTo("<p class='two'></p>")
       Tag("a", 'href -> "http://lol").mkString(0) must beEqualTo("<a href='http://lol'></a>")
     }
+    "handle duplicate and empty attrs" in {
+      Tag("p", 'class -> "one two").mkString(0) must beEqualTo("<p class='one two'></p>")
+      Tag("p", 'class -> "one", 'class -> "two").mkString(0) must beEqualTo("<p class='two one'></p>")
+      Tag("a", 'class -> "one", 'href -> "").mkString(0) must beEqualTo("<a class='one'></a>")
+    }
   }
 }
