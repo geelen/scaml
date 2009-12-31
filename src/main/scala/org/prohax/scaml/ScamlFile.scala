@@ -8,5 +8,5 @@ trait ScamlFile[T] {
 
   def render(t: T): Indentable
 
-  def renderString(t: T) = render(t).mkString(0)
+  def renderString(t: T) = {if (headers.isEmpty) "" else headers + "\n"} + render(t).mkString(0)
 }

@@ -8,7 +8,7 @@ import scala.xml.Xhtml
 import org.prohax.scaml.models._
 import java.util.Date
 
-object ScamlParserSpec extends Specification {
+class ScamlParserSpec extends Specification {
   val sampleDir = "src/test/sampledata/"
   val inputDir = sampleDir + "input/"
   val outputDir = sampleDir + "output/"
@@ -28,7 +28,7 @@ object ScamlParserSpec extends Specification {
   "The renderer" should {
     import output._
     List(
-//      ("classesandids", () => classesandids.renderString(())),
+      ("classesandids", () => classesandids.renderString(())),
 //      ("complexnesting", () => complexnesting.renderString(())),
 //      ("doctype", () => doctype.renderString(())),
 //      ("doublynested", () => doublynested.renderString(())),
