@@ -4,7 +4,7 @@ import org.specs._
 
 import Helpers._
 
-object BasicSpec extends Specification {
+class BasicSpec extends Specification {
   "The Tag class" should {
     "print nicely for empty tags" in {
       Tag("html").mkString(0) must beEqualTo("<html></html>")

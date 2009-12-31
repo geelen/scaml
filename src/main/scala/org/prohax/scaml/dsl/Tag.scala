@@ -3,7 +3,6 @@ package org.prohax.scaml.dsl
 import scala.collection.immutable.Map
 
 import org.prohax.scaml.dsl.Helpers._
-
 class Tag(name: String, attrs: Map[Symbol, String], inner: Option[Either[String, Indentable]]) extends Indentable {
   def mkString(depth: Int) = {
     indent(depth) + "<" + name + printAttrs + ">" + printInner(depth) + "</" + name + ">"

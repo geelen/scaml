@@ -4,33 +4,35 @@ import scala.xml._
 import org.prohax.scaml.ScamlFile
 
 import org.prohax.scaml.models._
+import org.prohax.scaml.dsl._
+import org.prohax.scaml.dsl.Helpers._
 
 object codes extends ScamlFile[Unit] {
   def render(t: Unit) = {
-    tag("p") {
-      text("Counting to three:") ++
-      tag("ul") {
+    Tag("p") {
+      "Counting to three:" &
+      Tag("ul") {
         (1 to 3).map(i => {
-          tag("li") { inlineText(i) }
+          Tag("li") { i.toString }
         })
       }
-    } ++
-    tag("p") {
-      text("First 9 squares:") ++
-      tag("ul") {
+    } &
+    Tag("p") {
+      "First 9 squares:" &
+      Tag("ul") {
         (1 to 3).map(i => {
-          tag("li") { inlineText(i * i) }
+          Tag("li") { (i * i).toString }
         })
       }
-    } ++
-    tag("p") {
-      text("Nesting times:") ++
-      tag("table", None, Nil) {
+    } &
+    Tag("p") {
+      "Nesting times:" &
+      Tag("table") {
         List((1, 2), (3, 4), (5, 6)).map {x => {
-          tag("tr") {
-            tag("td") { inlineText(x._1) } ++
+          Tag("tr") {
+            Tag("td") { x._1.toString } &
             (1 to x._2).map {i => {
-              tag("td") { inlineText(i) }
+              Tag("td") { i.toString }
             }}
           }
         }}
