@@ -4,22 +4,6 @@ import scala.collection.immutable.Map
 
 import org.prohax.scaml.dsl.Helpers._
 
-trait Indentable {
-  def mkString(depth: Int): String
-}
-
-class MultiTag(is: List[Indentable]) extends Indentable {
-  def mkString(depth: Int) = is.reverseMap(_.mkString(depth)).mkString("\n")
-
-  def &(i: Indentable) = new MultiTag(i :: is)
-}
-
-case class StringTag(s: String) extends Indentable {
-  def mkString(depth: Int) = indent(depth) + s
-  
-  def &(i: Indentable) = new MultiTag(List(i, this))
-}
-
 class Tag(name: String, attrs: Map[Symbol, String], inner: Option[Either[String, Indentable]]) extends Indentable {
   def mkString(depth: Int) = {
     indent(depth) + "<" + name + printAttrs + ">" + printInner(depth) + "</" + name + ">"
@@ -41,6 +25,7 @@ class Tag(name: String, attrs: Map[Symbol, String], inner: Option[Either[String,
     case Some(Right(y)) => "\n" + y.mkString(depth + 1) + "\n" + indent(depth)
   }
 }
+
 object Tag {
   def apply(s: String) = new Tag(s, Map[Symbol, String](), None)
 
