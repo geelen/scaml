@@ -2,6 +2,8 @@ package org.prohax.scaml.dsl
 
 import org.specs._
 
+import Helpers._
+
 object BasicSpec extends Specification {
   "The Tag class" should {
     "print nicely for empty tags" in {
@@ -26,6 +28,24 @@ object BasicSpec extends Specification {
       Tag("div") {
         Tag("p") {"text"}
       }.mkString(1) must beEqualTo("  <div>\n    <p>text</p>\n  </div>")
+
+      Tag("div") {
+        Tag("h1") {
+          "Something" &
+          Tag("strong") { "bold" } &
+          "up here."
+        } &
+        Tag("p") {"text"}
+      }.mkString(1) must beEqualTo(
+"""  <div>
+    <h1>
+      Something
+      <strong>bold</strong>
+      up here.
+    </h1>
+    <p>text</p>
+  </div>"""
+        )
     }
   }
 }
