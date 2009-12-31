@@ -6,7 +6,11 @@ import org.prohax.scaml.Helpers._
 
 class Tag(name: String, attrs: Map[Symbol, String]) {
   def mkString(depth: Int) = {
-    indent(depth) + "<" + name + "></" + name + ">"
+    indent(depth) + "<" + name + printAttrs + "></" + name + ">"
+  }
+
+  private def printAttrs = if (attrs.isEmpty) "" else {
+    " " + attrs.map(x => x._1.name + "='" + x._2 + "'").mkString(" ")
   }
 }
 object Tag {
